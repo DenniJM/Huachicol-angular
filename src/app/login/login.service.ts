@@ -106,15 +106,16 @@ export class LoginService {
         "type": "FeatureCollection",
         "features": []
       };
-      for (const punto in datos) {
-        if (datos.hasOwnProperty(punto)) {
+      const json = JSON.parse(JSON.stringify(datos));
+      for (const punto of json.complain_centers) {
+        if (punto.hasOwnProperty('center')) {
           this.denuncias.features.push({
             type: 'Feature',
             geometry: {
               type: 'Point',
-              coordinates: [datos[punto][0], datos[punto][1]]
+              coordinates: [punto.center.coordinates[0].toFixed(5), punto.center.coordinates[1].toFixed(5)]
             },
-            properties: {Fecha: '', Status: 'Sin asignar', Distancia: 200, Pemex: false, SEDENA: false}
+            properties: {Fecha: punto.fecha, Status: punto.estado, Distancia: punto.radio.toFixed(4), Pemex: false, SEDENA: false}
           });
         }
       }

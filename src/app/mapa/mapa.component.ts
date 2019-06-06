@@ -29,6 +29,7 @@ import LineString from 'ol/geom/LineString';
 
 
 
+
 @Component({
   selector: 'app-mapa',
   templateUrl: './mapa.component.html',
@@ -91,7 +92,7 @@ export class MapaComponent implements OnInit {
     const user = localStorage.getItem('user');
     if (user.match(environment.adminRole) !== null) {
       this.cargarDuctos();
-      this.denunciasGeojson = this.loginService.getDenuncias();
+      this.denunciasGeojson = this.loginService.getDenuncias2();
       this.cargarDenuncias();
     }
   }

@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {LoginService} from '../login/login.service';
 import {Router} from '@angular/router';
 import { NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import { getDistance} from 'ol/sphere';
+import { getDistance } from 'ol/sphere';
 
 import { MapaComponent } from '../mapa/mapa.component';
 
@@ -44,9 +44,11 @@ export class AdministradorComponent implements OnInit {
 
   ngOnInit() {
     this.iniciarVariables();
+    this.actualizarTablaDenuncias();
   }
 
   openVerticallyCentered(content) {
+    console.log(content);
     this.modalReference = this.modalService.open(content, { centered: true, backdropClass: 'light-blue-backdrop', size: 'lg' });
   }
 
@@ -86,6 +88,7 @@ export class AdministradorComponent implements OnInit {
   this.loginService.pedirDenuncias((status) => {
     if (status) {
       this.denuncias = this.loginService.getDenuncias2();
+      console.log(this.denuncias);
       this.actualizarMapa();
     }
   });
@@ -137,7 +140,6 @@ export class AdministradorComponent implements OnInit {
         this.mostrarMensaje('Asignación cancelada', 'La asignación no fue posible, accion cancelada, intente más tarde',
           false, modal, () => {});
         console.log(error1);
-        this.openVerticallyCentered('message');
       }
       );
   }

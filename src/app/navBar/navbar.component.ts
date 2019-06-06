@@ -1,6 +1,5 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {LoginService} from '../login/login.service';
-import {Router} from '@angular/router';
 
 
 @Component({
@@ -11,11 +10,13 @@ import {Router} from '@angular/router';
 
 export class NavbarComponent implements OnInit {
   public sesion: boolean;
-
+  @Input() estado: boolean;
+  cerrarLogin: boolean;
   public BotonPrincipal: string;
 
   constructor(private loginService: LoginService) {
     this.sesion = false;
+    this.cerrarLogin = false;
   }
 
   ngOnInit(): void {
@@ -30,5 +31,10 @@ export class NavbarComponent implements OnInit {
       this.BotonPrincipal = 'Mi cuenta';
       this.sesion = true;
     }
+  }
+
+  LoginForm(estado: boolean) {
+    this.cerrarLogin = estado;
+    console.log('Recibiendo estado: ' + estado);
   }
 }

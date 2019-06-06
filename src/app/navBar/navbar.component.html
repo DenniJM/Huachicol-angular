@@ -47,7 +47,7 @@
           <span class="clearfix d-none d-sm-inline-block">{{BotonPrincipal}}</span>
         </a>
         <div class="dropdown-menu dropdown-primary dropdown-menu-right" role="menu" (click)="$event.stopPropagation()" (keydown)="$event.stopPropagation()">
-          <app-login></app-login>
+          <app-login (cerrar)="LoginForm(estado)"></app-login>
         </div>
       </li>
     </ul>

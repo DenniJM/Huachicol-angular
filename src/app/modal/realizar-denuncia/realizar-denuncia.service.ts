@@ -48,6 +48,7 @@ export class RealizarDenunciaService {
     return this.http.post(this.url, JSON.stringify(denuncia), httpOptions).pipe(
       map(datos => {
         console.log('datos post ' , datos);
+        return datos;
       }),
       catchError(e => {
         console.log('post');

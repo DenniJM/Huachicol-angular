@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewEncapsulation} from '@angular/core';
 import { NgbModal, NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from './login.service';
 import {Router} from '@angular/router';
 import {environment} from '../../environments/environment';
-import decode from 'jwt-decode';
+
 
 @Component({
   selector: 'app-login',
@@ -22,6 +22,7 @@ export class LoginComponent implements OnInit {
   opcion2: string;
   opcion3: string;
   sesion: boolean;
+  @Output() cerrar: EventEmitter<boolean> = new EventEmitter<boolean>();
 
 
   constructor(private modalService: NgbModal, private loginService: LoginService, private router: Router) {
@@ -97,5 +98,10 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['']);
       }
     }
+  }
+
+  cerrarLogin() {
+    console.log('Mandando señal true para cerrar');
+    this.cerrar.emit(true);
   }
 }
